@@ -1,4 +1,5 @@
-﻿using teste.Models;
+﻿using teste.Data;
+using teste.Models;
 
 namespace teste.Services
 {
@@ -9,15 +10,19 @@ namespace teste.Services
 
     public class FaturaService : IFaturaService
     {
+        // Variável para guardar a ponte para a base de dados
+        private readonly AppDbContext _context;
+
+        // INJEÇÃO DE DEPENDÊNCIA: O .NET entrega-nos o AppDbContext pronto a usar!
+        public FaturaService(AppDbContext context)
+        {
+            _context = context;
+        }
+
         public List<Fatura> ObterTodas()
         {
-            return new List<Fatura>
-            {
-                new Fatura { Id = 1, NomeCliente = "Empresa A", ValorTotal = 1500.50m },
-                new Fatura { Id = 2, NomeCliente = "Empresa B", ValorTotal = 300.00m },
-                new Fatura { Id = 3, NomeCliente = "Cliente Final", ValorTotal = 45.99m },
-                new Fatura { Id = 3, NomeCliente = "Empresa C", ValorTotal = 47.34m }
-            };
+            // O ".ToList()" diz ao EF Core para executar o comando SQL (SELECT * FROM Faturas)
+            return _context.Faturas.ToList();
         }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model List<teste.Models.Fatura>
+
+<h1>Faturas do ERP</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Valor Total (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fatura in Model)
+        {
+            <tr>
+                <td>@fatura.Id</td>
+                <td>@fatura.NomeCliente</td>
+                <td>@fatura.ValorTotal</td>
+            </tr>
+        }
+    </tbody>
+</table>
