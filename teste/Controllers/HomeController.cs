@@ -15,7 +15,7 @@ namespace teste.Controllers
 
         public IActionResult Index()
         {
-            return View("Index");
+            return View();
         }
 
         public IActionResult Privacy()
