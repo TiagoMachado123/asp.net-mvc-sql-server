@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using teste.Models;
 using teste.Services;
 
 namespace teste.Controllers
@@ -18,6 +19,22 @@ namespace teste.Controllers
             var listaDeFaturas = _faturaService.ObterTodas();
 
             return View(listaDeFaturas);
+        }
+
+        // FaturasController.cs
+
+        [HttpGet]
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Criar(Fatura novaFatura)
+        {
+            _faturaService.CriarFatura(novaFatura);
+
+            return RedirectToAction("Index");
         }
     }
 }
